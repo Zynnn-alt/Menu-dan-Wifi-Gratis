@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Makanan Gratis - Simulasi Phishing</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #ff5722; }
+        form { display: flex; flex-direction: column; }
+        input, button { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; cursor: pointer; }
+        .warning { color: red; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 Menu Makanan Gratis!</h1>
+        <p>Scan QR Code ini untuk mendapatkan voucher menu makanan gratis. Isi data di bawah untuk verifikasi:</p>
+        
+        <form id="phishingForm">
+            <input type="text" id="name" placeholder="Nama Lengkap" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password WiFi (untuk koneksi)" required>
+            <button type="submit">Dapatkan Voucher!</button>
+        </form>
+        
+        <div class="warning">
+            ⚠️ PERINGATAN: Ini adalah simulasi phishing untuk tujuan edukasi. Jangan masukkan data asli! Data yang diisi akan ditampilkan sebagai alert demo.
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('phishingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah submit asli
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            alert(`Data Demo: Nama: ${name}, Email: ${email}, Password: ${password}. Ini simulasi - data tidak disimpan!`);
+            // Untuk demo lanjutan, bisa kirim ke server dummy (opsional)
+        });
+    </script>
+</body>
+</html>
