@@ -5,93 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Makanan Gratis - Simulasi Phishing</title>
     <style>
-        body { font-family: 'Arial', sans-serif; background: linear-gradient(to bottom, #ff5722, #ffc107); color: #333; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); text-align: center; }
-        h1 { color: #ff5722; margin-bottom: 20px; }
-        form { display: none; } /* Sembunyikan form awal */
-        .login-form { display: block; }
-        input, button { width: 100%; margin: 10px 0; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; }
-        button { background: #4CAF50; color: white; cursor: pointer; transition: background 0.3s; }
-        button:hover { background: #45a049; }
-        .warning { color: red; font-weight: bold; margin-top: 20px; font-size: 14px; }
-        .menu { display: none; } /* Sembunyikan menu awal */
-        .menu img { width: 100%; max-width: 300px; border-radius: 10px; margin: 10px 0; }
-        .menu ul { list-style: none; padding: 0; }
-        .menu li { background: #f9f9f9; margin: 10px 0; padding: 15px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .menu button { width: auto; padding: 8px 15px; }
-        @media (max-width: 600px) { .container { margin: 20px; padding: 20px; } }
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 20px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #ff5722; }
+        form { display: flex; flex-direction: column; }
+        input, button { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; cursor: pointer; }
+        .warning { color: red; font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="login-section" class="login-form">
-            <h1>🎉 Menu Makanan Gratis!</h1>
-            <p>Scan QR Code ini untuk mendapatkan voucher. Isi data untuk verifikasi:</p>
-            <form id="phishingForm">
-                <input type="text" id="name" placeholder="Nama Lengkap" required>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password WiFi (untuk koneksi)" required>
-                <button type="submit">Login & Dapatkan Menu!</button>
-            </form>
-            <div class="warning">
-                ⚠️ PERINGATAN: Ini simulasi phishing edukasi. Jangan masukkan data asli! Data disimpan di browser Anda untuk demo.
-            </div>
-        </div>
+        <h1>🎉 Menu Makanan Gratis!</h1>
+        <p>Scan QR Code ini untuk mendapatkan voucher menu makanan gratis. Isi data di bawah untuk verifikasi:</p>
         
-        <div id="menu-section" class="menu">
-            <h1>🍔 Menu Gratis Anda!</h1>
-            <p>Selamat! Berikut menu yang bisa Anda klaim:</p>
-            <ul>
-                <li>
-                    <div>
-                        <img src="https://via.placeholder.com/200x150?text=Burger" alt="Burger">
-                        <strong>Burger Deluxe</strong> - Rp 0 (Gratis!)
-                    </div>
-                    <button onclick="claim('Burger')">Klaim Voucher</button>
-                </li>
-                <li>
-                    <div>
-                        <img src="https://via.placeholder.com/200x150?text=Pizza" alt="Pizza">
-                        <strong>Pizza Margherita</strong> - Rp 0 (Gratis!)
-                    </div>
-                    <button onclick="claim('Pizza')">Klaim Voucher</button>
-                </li>
-                <li>
-                    <div>
-                        <img src="https://via.placeholder.com/200x150?text=Nasi+Goreng" alt="Nasi Goreng">
-                        <strong>Nasi Goreng Spesial</strong> - Rp 0 (Gratis!)
-                    </div>
-                    <button onclick="claim('Nasi Goreng')">Klaim Voucher</button>
-                </li>
-            </ul>
-            <button onclick="backToLogin()">Kembali ke Login</button>
+        <form id="phishingForm">
+            <input type="text" id="name" placeholder="Nama Lengkap" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password WiFi (untuk koneksi)" required>
+            <button type="submit">Dapatkan Voucher!</button>
+        </form>
+        
+        <div class="warning">
+            ⚠️ PERINGATAN: Ini adalah simulasi phishing untuk tujuan edukasi. Jangan masukkan data asli! Data yang diisi akan ditampilkan sebagai alert demo.
         </div>
     </div>
     
     <script>
         document.getElementById('phishingForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Mencegah submit asli
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            
-            // Simpan data ke localStorage (penyimpanan lokal di browser)
-            localStorage.setItem('userData', JSON.stringify({ name, email, password }));
-            console.log('Data disimpan (demo):', { name, email, password }); // Lihat di console browser
-            
-            // Alihkan ke menu
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('menu-section').style.display = 'block';
+            alert(`Data Demo: Nama: ${name}, Email: ${email}, Password: ${password}. Ini simulasi - data tidak disimpan!`);
+            // Untuk demo lanjutan, bisa kirim ke server dummy (opsional)
         });
-        
-        function claim(item) {
-            alert(`Voucher untuk ${item} diklaim! Ini simulasi - tidak ada voucher nyata.`);
-        }
-        
-        function backToLogin() {
-            document.getElementById('menu-section').style.display = 'none';
-            document.getElementById('login-section').style.display = 'block';
-        }
     </script>
 </body>
 </html>
